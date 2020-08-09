@@ -72,6 +72,8 @@ class App extends Component {
             return item['firstName'].toLowerCase().includes(search.toLowerCase())
                 || item['lastName'].toLowerCase().includes(search.toLowerCase())
                 || item['email'].toLowerCase().includes(search.toLowerCase())
+                || item['id'].toString().toLowerCase().includes(search.toLowerCase())
+                || item['phone'].toString().toLowerCase().includes(search.toLowerCase())
         })
     }
 
@@ -86,7 +88,7 @@ class App extends Component {
             )
         }
         const filteredData = this.getFilteredData();
-        const displayData = _.chunk(filteredData, pageSize)[this.state.currentPage]
+        const displayData = filteredData.length > 0 ? _.chunk(filteredData, pageSize)[this.state.currentPage] : []
         return (
             <div className="container">
                 {
